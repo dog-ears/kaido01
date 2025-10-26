@@ -4,7 +4,6 @@ import { Resend } from "resend";
 import crypto from "crypto";
 
 const prisma = new PrismaClient();
-const resend = new Resend(process.env.RESEND_API_KEY);
 
 // パスワードリセット用のメール送信
 export async function POST(request: NextRequest) {
@@ -51,6 +50,7 @@ export async function POST(request: NextRequest) {
 
         // メール送信（Resendが設定されている場合のみ）
         if (process.env.RESEND_API_KEY) {
+            const resend = new Resend(process.env.RESEND_API_KEY);
             const resetUrl = `${process.env.NEXTAUTH_URL || "http://localhost:3000"}/auth/reset-password?token=${resetToken}`;
 
             try {

@@ -7,7 +7,6 @@ import { Resend } from "resend";
 import crypto from "crypto";
 
 const prisma = new PrismaClient();
-const resend = new Resend(process.env.RESEND_API_KEY);
 
 // ユーザー一覧取得
 export async function GET() {
@@ -105,6 +104,7 @@ export async function POST(request: NextRequest) {
 
             // メール送信（Resendが設定されている場合のみ）
             if (process.env.RESEND_API_KEY) {
+                const resend = new Resend(process.env.RESEND_API_KEY);
                 const resetUrl = `${process.env.NEXTAUTH_URL || "http://localhost:3000"}/auth/reset-password?token=${resetToken}`;
 
                 // テスト環境では自分のメールアドレスに送信
