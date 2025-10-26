@@ -18,12 +18,12 @@
 
 **実行方法**:
 ```bash
-bun run test
+bun run test:unit
 ```
 
 **監視モード**:
 ```bash
-bun run test:watch
+bun run test:unit:watch
 ```
 
 **テストファイル**: `tests/unit/lib/utils.test.ts`
@@ -76,18 +76,29 @@ tests/
 
 ## カバレッジ
 
-カバレッジレポートの生成（Jest）:
+カバレッジレポートの生成:
 ```bash
-bun run test -- --coverage
+bun run test:unit -- --coverage
 ```
 
 ## CI/CDでの実行
 
-### ローカル環境
+### テストの実行方法
+
+#### すべてのテストを実行
+```bash
+bun run test
+```
+このコマンドは、ユニットテストとE2Eテストの両方を実行します。
+
+#### 個別に実行
+- ユニットテストのみ: `bun run test:unit`
+- E2Eテストのみ: `bun run test:e2e`
+
+### ローカル環境での準備
 1. データベースが起動していることを確認
 2. テスト用ユーザーが作成されていることを確認
-3. `bun run test` でユニットテストを実行
-4. `bun run test:e2e` でE2Eテストを実行
+3. 開発サーバーが起動していることを確認（E2Eテストの場合）
 
 ### 注意事項
 
