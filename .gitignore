@@ -45,3 +45,4 @@ yarn-error.log*
 # Prisma
 .prisma/
 src/generated/
+prisma/test.db
