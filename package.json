@@ -7,7 +7,6 @@
     "build": "prisma generate && next build --webpack",
     "start": "next start",
     "lint": "eslint",
-    "postinstall": "prisma generate",
     "db:generate": "prisma generate",
     "db:push": "prisma db push",
     "db:migrate": "prisma migrate dev",
@@ -16,11 +15,13 @@
     "update-admin": "bunx tsx scripts/update-admin.ts"
   },
   "dependencies": {
+    "@prisma/adapter-pg": "^6.18.0",
     "@prisma/client": "^6.18.0",
     "bcryptjs": "^3.0.2",
     "dotenv": "^17.2.3",
     "next": "16.0.0",
     "next-auth": "^4.24.11",
+    "pg": "^8.13.1",
     "prisma": "^6.18.0",
     "react": "19.2.0",
     "react-dom": "19.2.0",
@@ -29,6 +30,7 @@
   "devDependencies": {
     "@types/bcryptjs": "^3.0.0",
     "@types/node": "^20",
+    "@types/pg": "^8.11.10",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
