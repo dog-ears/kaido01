@@ -2,9 +2,8 @@
 // Using SQLite for faster tests
 
 generator client {
-  provider   = "prisma-client-js"
-  engineType = "client"
-  output     = "../node_modules/.prisma/client-test"
+  provider = "prisma-client-js"
+  engineType = "binary"
 }
 
 datasource db {

@@ -1,11 +1,20 @@
-import { PrismaClient } from '../../node_modules/.prisma/client-test';
+import { PrismaClient } from '@prisma/client';
 import { hashPassword } from '../src/lib/utils';
+import { join } from 'path';
 
-async function globalSetup() {
+// SQLiteテストデータベースに接続
+const testDbPath = join(process.cwd(), 'prisma', 'test.db');
+const prisma = new PrismaClient({
+  datasources: {
+    db: {
+      url: `file:${testDbPath}`,
+    },
+  },
+});
+
+async function setupTestDatabase() {
   console.log('🔧 Setting up test database...');
   
-  const prisma = new PrismaClient();
-
   try {
     // テスト用のユーザーを作成
     const adminPassword = await hashPassword('adminpassword123');
@@ -49,5 +58,4 @@ async function globalSetup() {
   }
 }
 
-export default globalSetup;
-
+setupTestDatabase();
