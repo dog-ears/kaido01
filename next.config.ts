@@ -1,9 +1,11 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  serverExternalPackages: ['@prisma/client'],
-  webpack: (config) => {
-    config.externals.push('.prisma/client');
+  serverExternalPackages: ['@prisma/client', 'prisma'],
+  webpack: (config, { isServer }) => {
+    if (isServer) {
+      config.externals.push('.prisma/client');
+    }
     return config;
   },
 };
