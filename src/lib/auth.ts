@@ -1,13 +1,13 @@
 import { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
-import { PrismaAdapter } from "@auth/prisma-adapter";
 import { PrismaClient } from "@/generated/prisma/client";
 import bcrypt from "bcryptjs";
 
 const prisma = new PrismaClient();
 
 export const authOptions: NextAuthOptions = {
-    adapter: PrismaAdapter(prisma),
+    // JWT戦略を使用するため、adapterは不要
+    // adapter: PrismaAdapter(prisma),
     providers: [
         CredentialsProvider({
             name: "credentials",
