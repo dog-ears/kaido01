@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
-import { PrismaClient } from "@/generated/prisma/client";
+import { PrismaClient } from "@prisma/client";
 import { authOptions } from "@/lib/auth";
 import { hashPassword } from "@/lib/utils";
 import { Resend } from "resend";

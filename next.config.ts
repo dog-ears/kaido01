@@ -4,7 +4,7 @@ const nextConfig: NextConfig = {
   serverExternalPackages: ['@prisma/client', 'prisma'],
   webpack: (config, { isServer }) => {
     if (isServer) {
-      config.externals.push('.prisma/client');
+      config.externals.push({ '@prisma/client': '@prisma/client' });
     }
     return config;
   },
