@@ -14,7 +14,7 @@
   align-items: center;
   justify-content: center;
   font-family: var(--font-geist-sans);
-  background-color: var(--background);
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 }
 
 .main {
@@ -138,4 +138,10 @@ a.secondary {
     --button-secondary-hover: #1a1a1a;
     --button-secondary-border: #1a1a1a;
   }
+}
+
+.loading {
+  color: white;
+  font-size: 18px;
+  text-align: center;
 }
