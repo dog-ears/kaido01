@@ -9,7 +9,10 @@ test.describe('権限表示テスト', () => {
     // ログインページにアクセス
     await page.goto('/auth/signin');
 
-    // ログイン情報を入力（実際のデータベースに依存）
+    // ログインフォームが表示されるまで待つ
+    await page.waitForSelector('[name="email"]');
+
+    // ログイン情報を入力
     await page.fill('[name="email"]', userEmail);
     await page.fill('[name="password"]', userPassword);
     
@@ -36,6 +39,9 @@ test.describe('権限表示テスト', () => {
     // ログインページにアクセス
     await page.goto('/auth/signin');
 
+    // ログインフォームが表示されるまで待つ
+    await page.waitForSelector('[name="email"]');
+
     // ログイン情報を入力
     await page.fill('[name="email"]', adminEmail);
     await page.fill('[name="password"]', adminPassword);
@@ -58,6 +64,10 @@ test.describe('権限表示テスト', () => {
     const userPassword = 'userpassword123';
 
     await page.goto('/auth/signin');
+
+    // ログインフォームが表示されるまで待つ
+    await page.waitForSelector('[name="email"]');
+
     await page.fill('[name="email"]', userEmail);
     await page.fill('[name="password"]', userPassword);
     await page.click('button[type="submit"]');
