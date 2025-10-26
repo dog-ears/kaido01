@@ -1,12 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
-import { PrismaClient } from "@prisma/client";
+import { prisma } from "@/lib/prisma";
 import { authOptions } from "@/lib/auth";
 import { hashPassword } from "@/lib/utils";
 import { Resend } from "resend";
 import crypto from "crypto";
-
-const prisma = new PrismaClient();
 
 // ユーザー一覧取得
 export async function GET() {

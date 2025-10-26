@@ -1,8 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
-import { PrismaClient } from "@prisma/client";
+import { prisma } from "@/lib/prisma";
 import { hashPassword } from "@/lib/utils";
-
-const prisma = new PrismaClient();
 
 // パスワードリセット完了
 export async function POST(request: NextRequest) {

@@ -1,9 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
-import { PrismaClient } from "@prisma/client";
+import { prisma } from "@/lib/prisma";
 import { Resend } from "resend";
 import crypto from "crypto";
-
-const prisma = new PrismaClient();
 
 // パスワードリセット用のメール送信
 export async function POST(request: NextRequest) {

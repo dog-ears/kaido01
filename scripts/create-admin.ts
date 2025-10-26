@@ -1,9 +1,11 @@
-import { PrismaClient } from "@prisma/client";
 import { hashPassword } from "../src/lib/utils";
 import { config } from "dotenv";
 
 // 環境変数を読み込み
 config({ path: ".env" });
+
+// スクリプトでは@prisma/clientではなく、Prismaを直接使用する
+const { PrismaClient } = require("@prisma/client");
 
 const prisma = new PrismaClient();
 

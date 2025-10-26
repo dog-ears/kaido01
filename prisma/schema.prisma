@@ -6,6 +6,10 @@ generator client {
   engineType = "client"
 }
 
+generator client_legacy {
+  provider = "prisma-client-js"
+}
+
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
@@ -54,7 +58,7 @@ model User {
   email         String    @unique
   emailVerified DateTime?
   image         String?
-  password      String?   // ハッシュ化されたパスワード
+  password      String? // ハッシュ化されたパスワード
   role          UserRole  @default(USER)
   isActive      Boolean   @default(true)
   createdAt     DateTime  @default(now())
