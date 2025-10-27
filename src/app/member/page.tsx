@@ -41,7 +41,7 @@ export default function MemberDashboard() {
     );
   }
 
-  if (!session) {
+  if (!session || !session.user) {
     return null;
   }
 
