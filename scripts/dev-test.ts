@@ -1,4 +1,9 @@
 import { spawn } from 'child_process';
+import { config } from 'dotenv';
+import { resolve } from 'path';
+
+// .env.local から環境変数を読み込む
+config({ path: resolve(process.cwd(), '.env.local') });
 
 async function startDevServerWithTestDB() {
   const testDatabaseUrl = process.env.TEST_DATABASE_URL;
