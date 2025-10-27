@@ -16,6 +16,8 @@ test-results/
 # Next.js
 .next/
 out/
+.next/swc/
+swc/
 next-env.d.ts
 
 # Production
