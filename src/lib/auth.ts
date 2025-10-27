@@ -14,11 +14,15 @@ export const authOptions: NextAuthOptions = {
                 password: { label: "Password", type: "password" }
             },
             async authorize(credentials) {
-                console.log("=== 認証開始 ===");
-                console.log("メールアドレス:", credentials?.email);
+                const isDev = process.env.NODE_ENV === 'development';
+                
+                if (isDev) {
+                    console.log("=== 認証開始 ===");
+                    console.log("メールアドレス:", credentials?.email);
+                }
 
                 if (!credentials?.email || !credentials?.password) {
-                    console.log("認証情報が不完全");
+                    if (isDev) console.log("認証情報が不完全");
                     return null;
                 }
 
@@ -29,10 +33,12 @@ export const authOptions: NextAuthOptions = {
                         },
                     });
 
-                    console.log("ユーザー検索結果:", user ? `見つかりました (ID: ${user.id}, Role: ${user.role})` : "見つかりませんでした");
+                    if (isDev) {
+                        console.log("ユーザー検索結果:", user ? `見つかりました (ID: ${user.id}, Role: ${user.role})` : "見つかりませんでした");
+                    }
 
                     if (!user || !user.password) {
-                        console.log("ユーザーまたはパスワードが見つかりません");
+                        if (isDev) console.log("ユーザーまたはパスワードが見つかりません");
                         return null;
                     }
 
@@ -41,19 +47,23 @@ export const authOptions: NextAuthOptions = {
                         user.password
                     );
 
-                    console.log("パスワード検証結果:", isPasswordValid ? "成功" : "失敗");
+                    if (isDev) {
+                        console.log("パスワード検証結果:", isPasswordValid ? "成功" : "失敗");
+                    }
 
                     if (!isPasswordValid) {
-                        console.log("パスワードが一致しません");
+                        if (isDev) console.log("パスワードが一致しません");
                         return null;
                     }
 
                     if (!user.isActive) {
-                        console.log("ユーザーがアクティブではありません");
+                        if (isDev) console.log("ユーザーがアクティブではありません");
                         return null;
                     }
 
-                    console.log("認証成功:", { id: user.id, email: user.email, role: user.role });
+                    if (isDev) {
+                        console.log("認証成功:", { id: user.id, email: user.email, role: user.role });
+                    }
                     return {
                         id: user.id,
                         email: user.email,
