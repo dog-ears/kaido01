@@ -1,5 +1,10 @@
 import { exec } from 'child_process';
 import { promisify } from 'util';
+import { config } from 'dotenv';
+import { resolve } from 'path';
+
+// .env.local から環境変数を読み込む
+config({ path: resolve(process.cwd(), '.env.local') });
 
 const execAsync = promisify(exec);
 
