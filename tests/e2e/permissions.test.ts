@@ -23,8 +23,8 @@ test.describe('権限表示テスト', () => {
     await page.waitForURL('/member');
 
     // 管理者専用UIが表示されないことを確認
-    await expect(page.locator('text=ユーザー管理')).not.toBeVisible();
-    await expect(page.locator('text=ユーザー管理へ')).not.toBeVisible();
+    await expect(page.getByRole('heading', { name: 'ユーザー管理' })).not.toBeVisible();
+    await expect(page.getByRole('link', { name: 'ユーザー管理へ' })).not.toBeVisible();
     await expect(page.getByRole('heading', { name: '管理者ダッシュボード', exact: true })).not.toBeVisible();
 
     // 一般ユーザー用UIが表示されることを確認
@@ -54,8 +54,8 @@ test.describe('権限表示テスト', () => {
 
     // 管理者専用UIが表示されることを確認
     await expect(page.getByRole('heading', { name: '管理者ダッシュボード', exact: true })).toBeVisible();
-    await expect(page.locator('text=ユーザー管理')).toBeVisible();
-    await expect(page.locator('text=ユーザー管理へ')).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'ユーザー管理' })).toBeVisible();
+    await expect(page.getByRole('link', { name: 'ユーザー管理へ' })).toBeVisible();
   });
 
   test('ログアウト機能が動作する', async ({ page }) => {
