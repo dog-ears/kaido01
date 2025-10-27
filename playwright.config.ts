@@ -40,13 +40,10 @@ export default defineConfig({
 
   /* Run your local dev server before starting the tests */
   webServer: {
-    command: 'bun run dev',
+    command: 'bun run dev:test',
     url: 'http://localhost:3000',
     reuseExistingServer: !process.env.CI,
     timeout: 120 * 1000,
-    env: {
-      DATABASE_URL: process.env.TEST_DATABASE_URL || process.env.DATABASE_URL || '',
-    },
   },
 });
 
