@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
+import { validateEmail } from "@/lib/utils";
 import { Resend } from "resend";
 import crypto from "crypto";
 
@@ -11,6 +12,14 @@ export async function POST(request: NextRequest) {
         if (!email) {
             return NextResponse.json(
                 { message: "メールアドレスが必要です。" },
+                { status: 400 }
+            );
+        }
+
+        // メールアドレスの形式を検証
+        if (!validateEmail(email)) {
+            return NextResponse.json(
+                { message: "有効なメールアドレスを入力してください。" },
                 { status: 400 }
             );
         }

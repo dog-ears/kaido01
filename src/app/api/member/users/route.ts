@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import { prisma } from "@/lib/prisma";
 import { authOptions } from "@/lib/auth";
-import { hashPassword } from "@/lib/utils";
+import { hashPassword, validateEmail } from "@/lib/utils";
 import { Resend } from "resend";
 import crypto from "crypto";
 
@@ -59,6 +59,14 @@ export async function POST(request: NextRequest) {
         if (!email || !role) {
             return NextResponse.json(
                 { message: "メールアドレスと役割が必要です。" },
+                { status: 400 }
+            );
+        }
+
+        // メールアドレスの形式を検証
+        if (!validateEmail(email)) {
+            return NextResponse.json(
+                { message: "有効なメールアドレスを入力してください。" },
                 { status: 400 }
             );
         }
