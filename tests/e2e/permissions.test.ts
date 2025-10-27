@@ -81,7 +81,7 @@ test.describe('権限表示テスト', () => {
 
     // ログインページにリダイレクトされることを確認
     await page.waitForURL('/auth/signin');
-    await expect(page.locator('text=ログイン')).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'ログイン' })).toBeVisible();
   });
 });
 
