@@ -42,7 +42,7 @@ export default function UsersPage() {
       } else {
         setError("ユーザー一覧の取得に失敗しました。");
       }
-    } catch (error) {
+    } catch {
       setError("エラーが発生しました。");
     } finally {
       setIsLoading(false);
@@ -62,7 +62,7 @@ export default function UsersPage() {
       } else {
         setError("ユーザーの削除に失敗しました。");
       }
-    } catch (error) {
+    } catch {
       setError("エラーが発生しました。");
     }
   };
@@ -86,7 +86,7 @@ export default function UsersPage() {
       } else {
         setError("ユーザー状態の更新に失敗しました。");
       }
-    } catch (error) {
+    } catch {
       setError("エラーが発生しました。");
     }
   };

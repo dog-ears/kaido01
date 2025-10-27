@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { signIn, getSession, useSession } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import styles from "./signin.module.css";
@@ -41,7 +41,7 @@ export default function SignIn() {
         // ログイン成功後、メンバーダッシュボードにリダイレクト
         router.push("/member");
       }
-    } catch (error) {
+    } catch {
       setError("ログイン中にエラーが発生しました。");
     } finally {
       setIsLoading(false);

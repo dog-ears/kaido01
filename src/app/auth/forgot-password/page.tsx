@@ -30,7 +30,7 @@ export default function ForgotPassword() {
         const data = await response.json();
         setError(data.message || "エラーが発生しました。");
       }
-    } catch (error) {
+    } catch {
       setError("パスワードリセット中にエラーが発生しました。");
     } finally {
       setIsLoading(false);

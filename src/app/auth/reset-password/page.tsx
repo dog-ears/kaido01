@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, Suspense } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import styles from "./reset-password.module.css";
 
@@ -12,7 +12,6 @@ function ResetPasswordContent() {
   const [error, setError] = useState("");
   const [isSuccess, setIsSuccess] = useState(false);
   const [token, setToken] = useState("");
-  const router = useRouter();
   const searchParams = useSearchParams();
 
   useEffect(() => {
@@ -57,7 +56,7 @@ function ResetPasswordContent() {
         const data = await response.json();
         setError(data.message || "パスワードのリセットに失敗しました。");
       }
-    } catch (error) {
+    } catch {
       setError("エラーが発生しました。");
     } finally {
       setIsLoading(false);

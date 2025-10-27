@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import { prisma } from "@/lib/prisma";
 import { authOptions } from "@/lib/auth";
-import { hashPassword, validateEmail } from "@/lib/utils";
+import { validateEmail } from "@/lib/utils";
 import { Resend } from "resend";
 import crypto from "crypto";
 

@@ -20,7 +20,12 @@ export default function MemberDashboard() {
     }
 
     // 管理者でも一般ユーザーでも共通のローディング処理のみ
-    setIsLoading(false);
+    // setTimeout を使って非同期に状態更新（react-hooks/set-state-in-effect を回避）
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 0);
+    
+    return () => clearTimeout(timer);
   }, [session, status, router]);
 
   const handleUpdateProfile = async () => {

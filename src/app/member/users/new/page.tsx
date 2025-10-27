@@ -50,7 +50,7 @@ export default function NewUser() {
         const data = await response.json();
         setError(data.message || "ユーザーの作成に失敗しました。");
       }
-    } catch (error) {
+    } catch {
       setError("エラーが発生しました。");
     } finally {
       setIsLoading(false);
