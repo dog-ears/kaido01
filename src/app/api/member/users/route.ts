@@ -9,9 +9,9 @@ import crypto from "crypto";
 // ユーザー一覧取得
 export async function GET() {
     try {
-        const session = await getServerSession(authOptions);
+        const session = await getServerSession(authOptions) as any;
 
-        if (!session || session.user.role !== "ADMIN") {
+        if (!session || !session.user || session.user.role !== "ADMIN") {
             return NextResponse.json(
                 { message: "管理者権限が必要です。" },
                 { status: 403 }
@@ -45,9 +45,9 @@ export async function GET() {
 // 新しいユーザー作成
 export async function POST(request: NextRequest) {
     try {
-        const session = await getServerSession(authOptions);
+        const session = await getServerSession(authOptions) as any;
 
-        if (!session || session.user.role !== "ADMIN") {
+        if (!session || !session.user || session.user.role !== "ADMIN") {
             return NextResponse.json(
                 { message: "管理者権限が必要です。" },
                 { status: 403 }

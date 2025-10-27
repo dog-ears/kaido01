@@ -9,9 +9,9 @@ export async function DELETE(
     { params }: { params: Promise<{ id: string }> }
 ) {
     try {
-        const session = await getServerSession(authOptions);
+        const session = await getServerSession(authOptions) as any;
 
-        if (!session || session.user.role !== "ADMIN") {
+        if (!session || !session.user || session.user.role !== "ADMIN") {
             return NextResponse.json(
                 { message: "管理者権限が必要です。" },
                 { status: 403 }
@@ -56,9 +56,9 @@ export async function PATCH(
     { params }: { params: Promise<{ id: string }> }
 ) {
     try {
-        const session = await getServerSession(authOptions);
+        const session = await getServerSession(authOptions) as any;
 
-        if (!session || session.user.role !== "ADMIN") {
+        if (!session || !session.user || session.user.role !== "ADMIN") {
             return NextResponse.json(
                 { message: "管理者権限が必要です。" },
                 { status: 403 }
