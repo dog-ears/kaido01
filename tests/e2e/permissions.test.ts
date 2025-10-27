@@ -10,11 +10,11 @@ test.describe('権限表示テスト', () => {
     await page.goto('/auth/signin');
 
     // ログインフォームが表示されるまで待つ
-    await page.waitForSelector('[name="email"]');
+    await page.waitForSelector('#email');
 
     // ログイン情報を入力
-    await page.fill('[name="email"]', userEmail);
-    await page.fill('[name="password"]', userPassword);
+    await page.fill('#email', userEmail);
+    await page.fill('#password', userPassword);
     
     // ログインボタンをクリック
     await page.click('button[type="submit"]');
@@ -40,11 +40,11 @@ test.describe('権限表示テスト', () => {
     await page.goto('/auth/signin');
 
     // ログインフォームが表示されるまで待つ
-    await page.waitForSelector('[name="email"]');
+    await page.waitForSelector('#email');
 
     // ログイン情報を入力
-    await page.fill('[name="email"]', adminEmail);
-    await page.fill('[name="password"]', adminPassword);
+    await page.fill('#email', adminEmail);
+    await page.fill('#password', adminPassword);
     
     // ログインボタンをクリック
     await page.click('button[type="submit"]');
@@ -66,10 +66,10 @@ test.describe('権限表示テスト', () => {
     await page.goto('/auth/signin');
 
     // ログインフォームが表示されるまで待つ
-    await page.waitForSelector('[name="email"]');
+    await page.waitForSelector('#email');
 
-    await page.fill('[name="email"]', userEmail);
-    await page.fill('[name="password"]', userPassword);
+    await page.fill('#email', userEmail);
+    await page.fill('#password', userPassword);
     await page.click('button[type="submit"]');
 
     // ダッシュボードにいることを確認
