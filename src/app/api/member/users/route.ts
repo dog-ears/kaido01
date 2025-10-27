@@ -105,8 +105,8 @@ export async function POST(request: NextRequest) {
                 const resend = new Resend(process.env.RESEND_API_KEY);
                 const resetUrl = `${process.env.NEXTAUTH_URL || "http://localhost:3000"}/auth/reset-password?token=${resetToken}`;
 
-                // テスト環境では自分のメールアドレスに送信
-                const testEmail = "info@dog-ears.net";
+                // テスト環境では自分のメールアドレスに送信（環境変数で設定可能）
+                const testEmail = process.env.TEST_EMAIL || "info@dog-ears.net";
 
                 await resend.emails.send({
                     from: process.env.RESEND_FROM_EMAIL || "noreply@yourdomain.com",
